@@ -39,7 +39,7 @@
 
 ---
 
-- #### Over all there are different ways you can use AWS.
+### Different ways you can use AWS.
 
 1. **Infrastructure as a Service (IaaS)** : AWS will manage the bottom 4 layers and you are responsible on anything on top of that.
 
@@ -64,3 +64,34 @@
 ![[SaaS.png]]
 
 ---
+
+### Security and Compliance Services
+
+- #### [[Infrastructure Protection]]:
+
+	1. AWS Shield
+	2. AWS Web Application Firewall (WAF)
+
+- #### [[Data Protection]]:
+
+	1. AWS Key Management System (KMS) and CloudHSM
+	2. AWS Certificate Manager (ACM)
+	3. AWS Secrets Manager
+	4. Amazon Macie
+
+---
+
+- #### [[Detection]]:
+
+	1. Amazon Inspector
+	2. Amazon GuardDuty
+	3. AWS Config
+	4. AWS Security Hub
+
+- #### [[Incident Response]]:
+
+	- Amazon Detective
+
+- #### [[Compliance]]:
+
+	- AWS Artifact
