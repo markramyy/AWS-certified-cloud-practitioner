@@ -20,7 +20,7 @@
 - #### Secondly AWS Responsibility : 
 
 1. They are responsible for **Security "OF" the Cloud**, they protect the global infrastructure on which your application run this includes Hardware, Software, Networking facilities, Real-state.
-
+Data Protection
 2. And the services around them like Compute, Storage, Database and etc...
 
 3. Their third party auditors that regularly verify AWS compliance with the variety of standard regulations so you can be sure that the keep their part of the deal.
