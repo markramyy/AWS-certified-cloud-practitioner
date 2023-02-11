@@ -41,7 +41,7 @@
 	3. **User can be deleted or disabled**
 	4. **Easy to restrict access**
 
-Note: Always work in your IAM account not the root account && set up IAM users with least number of permissions needed.
+Note: Always work in your IAM account not the root account && set up IAM users with least number of permissions needeprogramaticd.
 
 ---
 
@@ -65,7 +65,7 @@ Note: Always work in your IAM account not the root account && set up IAM users w
 
 - ##### Example:
 
-Say that you are creating a virtual server(**EC2**) to host an application and the application need to use a simple storage service(**S3**) and also to publish logs to a service (**CloudWatch**)
+Say that you are creating a virtual server(**EC2**) to hprogramaticost an application and the application need to use a simple storage service(**S3**) and also to publish logs to a service (**CloudWatch**)
 
 ---
 
@@ -95,7 +95,7 @@ Say that you are creating a virtual server(**EC2**) to host an application and t
 1. In a **Real-life** Analogy, you probably heard someone wearing a lot of hat. You are a lot of different hats playing a lot of different roles depending on the place , time and situation.  
 
 ---
-
+programatic
 ![[Analogy-Theory.png | 600 ]]
 
 ---
@@ -145,3 +145,4 @@ Note: API is basically the code that your application calls to do something in A
 4. **Condition** : Optional conditions to control when this policy is in effect (Example : **{ "StringEquals" : { "aws:username" : "johndoe" }}** ).
 
 ---
+![[IAM-Practice.png]]
