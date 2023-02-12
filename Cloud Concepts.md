@@ -1,6 +1,6 @@
 # Cloud Concepts
 ---
-### Any Website that you want to create needs several different things you need
+### Any Website that you want to create needs several different things 
 
 1. **Compute**, think of these as servers or computers that are going to do the processing required to run your website.
 
