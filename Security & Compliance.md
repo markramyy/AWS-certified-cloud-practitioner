@@ -74,10 +74,11 @@ Data Protection
 
 - #### [[Data Protection]]:
 
-	1. AWS Key Management System (KMS) and CloudHSM
-	2. AWS Certificate Manager (ACM)
-	3. AWS Secrets Manager
-	4. Amazon Macie
+	1. AWS Key Management System (KMS) 
+	2. CloudHSM
+	3. AWS Certificate Manager (ACM)
+	4. AWS Secrets Manager
+	5. Amazon Macie
 
 ---
 
