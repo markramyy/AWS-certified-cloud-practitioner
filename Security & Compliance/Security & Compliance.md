@@ -33,7 +33,7 @@ Data Protection
 
 - #### So that is the big picture but it is important to know that your responsibilities can vary depending on the service .
 
-	1. Provisioning your own server and installing Windows or Linux or their software, you are responsible to make sure that the system is updated and patched, etc...
+	1. Provisioning your own server and installing Windows oUntitledr Linux or their software, you are responsible to make sure that the system is updated and patched, etc...
 	
 	2. If you are in managed server all of that underline work is done for you.
 
@@ -54,7 +54,7 @@ Data Protection
 ---
 
 ![[PaaS.png]]
-
+Untitled
 ---
 
 3. **Software as a Service (SaaS)** : AWS is responsible for everything, you just need to use the software.
