@@ -11,7 +11,7 @@
 
 ---
 
-## After knowing a breif intro about AWS and what is their role I've started the Module 1 (Cloud Concepts) :
+## Cloud Concepts (*26% of the exam*) :
 
 ### Any website you intend to construct need a number of distinct components.
 1. **Compute**, think of these as servers or computers that are going to do the processing required to run your website.
@@ -85,8 +85,6 @@ Sustainability | The ability to coninually improve sustainability impacts by red
 	- Implement elasticity (*Scale up and down when needed*).
 	- Think parallel (*Think about the workload*)
 
-![[Think_Parallel.png | 300]]
-
 ---
 
 ### Important Points to Remember for the Exam
@@ -105,10 +103,196 @@ Sustainability | The ability to coninually improve sustainability impacts by red
 	 - Elasticity: ability to scale resources up and down based on needs.
 	 - Reliability: perform an intended function correctly and consistently when expected to.
 
- [Review the Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
+
+### You should get a look at [Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
  
+---
+
+## Security and Compliance (*25% of the Exam*)
+
+### AWS Shared Responsibility Model :
+
+![Chart-1024x603-1.png (1024×603) (sonraisecurity.com)](https://sonraisecurity.com/wp-content/uploads/Chart-1024x603-1.png)
 
 
+1. **Infrastructure as a Service (IaaS)** : AWS will manage the bottom 4 layers and you are responsible on anything on top of that.
+
+2. **Platform as a Service (PaaS)** : AWS will manage a few more things including the Runtime, Middleware and Operating System and you manage the applications and data.
+
+3. **Software as a Service (SaaS)** : AWS is responsible for everything, you just need to use the software.
+
+### What is Identity and Access Management (IAM) ?
+Service that used o securly control access to your AWS resources. It controls **Authentication** (*Who*) and **Authorization** (*What they can do*).
+
+### You should Know go to Lab6 in introduction 101 labs which is the introduction to AWS Identity and Access Management (IAM).
+
+### 1. Users
+
+Root User | IAM User
+--- | ---
+One per account | Multiple per account
+Unrestricted access | Users can be deleted or disabled
+Difficult to restrict or revoke access | Easy to restrict access
+
+#### A root user can perform the following tasks:
+
+	- Close an AWS Account
+	- Change an AWS support plan
+	- Change AWS Account settings
+
+*Note: For best practices always work in your IAM account not the root account, Set up IAM users with the least number of permissions needed.*
+
+### 2. User Groups
+Is a group of users that share the same roles and policies.
+
+### 3. Role 
+
+	- Similar to a user (an identity with permissions).
+	- Does not have credentials (passwords or keys).
+	- Assumable, temporarily, by anyone who needs it.
+
+*Whatever hat you put on or whatever hat you put on as long as you are wearing this hat you can do the specific tasks with the role.*
+
+### 4. Policies (Who can do what to which resources and when)
+*Ex: Allow IAM to rotate their own credentials programmatically and in the console, Allow user to start and stop EC2 instances, etc...*
+
+**Policy Example**
+```json
+{
+	"Version" : "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow", 
+			"Action": [
+				"ec2: StartInstances",
+				"ec2: StopInstances"
+			],
+			"Resource": "arn:aws:ec2:*:*:instance/*",
+			"Condition": {
+				"StringEquals": {
+					"aws:ResourceTag/Owner": "${aws:username}" 
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": "ec2:DescribeInstances",
+			"Resources": "*"
+		}
+	]
+}
+```
+
+to finish up the section you should be able to create a normal users, group users, roles, Policies(and attach them)
+
+---
+
+### Multi-Factor Authentication (MFA)
+Two or more factors in order to authenticate (i.e, figure out who you are)
+
+	- Something you know (e.g. , a password)
+	- Something you have (e.g. , a phone or a hardware token)
+	- Something you are (e.g. , fingerprint)
+
+#### Three types of MFA Devices
+
+	1. Virtual MFA device for smartphone or tablet (google, microsoft)
+	2. U2F Security key (yubikey)
+	3. Other hardware key ex:gamalto
+
+*Best Practices is to enable MFA for your root account and IAM users*
+
+#### What is an Access key ?
+an access key is a way to have permessions into the console using your terminal but you two things
+
+	1. Access key ID
+	2. Secret Key (which you shouldn't have it in any code source)
+
+### IAM Best Practices
+
+	- Use an IAM user for day-to-day work, NOT the root account.
+	- Use roles to give permissions to AWS services.
+	- Don't share credentials.
+	- Assign permissions to groups rather than individual users.
+	- When assigning permissions, give the least amount possible.
+	- Enforce MFA and strong password policies.
+	- Use the IAM Credentials Report to audit permissions.
+
+---
+
+## Security and Compliance Services
+
+- Infrastructure Protection
+- Data Protection
+- Detection
+- Incident Response
+- Compliance
+
+### Infrastructure Protection :
+
+#### What is a DDoS attack ? 
+A DDoS attack is a cyber attack that overloads a website or service with too much traffic, making it unavailable. The attack originates from multiple sources to overwhelm the target. It is important for organizations to have proper security measures in place to protect against DDoS attacks.
+
+#### 1. AWS Shield
+
+- This is a service that AWS offer for protection against **DDoS**.
+- Think of it as Shield that sets and protects the server from attacks.
+
+- There is 2 types of AWS Shield:
+	1. **STANDARD** :
+		- Automatically protects all AWS customers.
+		- Free
+		- Protects from the most common types of **DDoS** attacks.
+
+	2. **ADVANCED** : 
+		- A paid service that protects against more sophisticated attacks and provides detailed diagnostics.
+		- Integrates with other services like CloudFront, Route 53 and Elastic Load Balancing.
+		- AWS Web Application Firewall (**WAF**) included at no extra cost.
+
+#### 2. Web Applicatoin Firewall (WAF) :
+- FireWall is a term refers to a physical wall between houses or structures that was meant to prevent the spread of fire.
+- Same in technology, a Web Application Firewall also set in front of your web applications protecting it against common exploits and bots.
+
+- **Configure rules** :
+	1. Allow, block, monitor/count.
+	2. IP addresses, country of origin, presence of a script, URL strings, etc...
 
 
+### Data Protection
+
+#### Two Types of Encryption
+
+AT REST | IN TRANSIT
+--- | ---
+Data is stored or archived on a device | Data being transferred from one location to another
+Examples : S3 bucket, Hard disk, Databse | Examples: Moving data from an EC2 instance to an S3 bucket, Moving data from an on-premises data center to AWS
+
+#### Encryption Keys
+
+1. Let's say you have a super secret msg that you want to send to somebody but you don't want anyone to be able to read it. 
+2. So you gonna run it through an encryption algorithm and crypt it into something different.
+
+#### AWS Key Management System (KMS) :
+
+	- Primary Service for encryption in AWS
+	- AWS manages the encryption hardware software and keys for you
+	- Integrated with many AWS services, including EBS, S3, Redshift, and CloudTrail (ex: I want to encrypt a document stored in a S3 bucket.)
+	- FIPS 140-2 Compliance: Level 2 overall (3 in some areas)
+
+#### AWS CloudHSM (*Hardware Security Module*)
+
+	 - AWS provisions the hardware and you do everything else
+		 - AWS cannot access your keys 
+		 - AWS cannot recover your keys
+	- Integrated with a limited number of other AWS services
+	- FIPS 140-2 Compliance: Level 3 (considered more secure)
+
+
+#### Types of Keys
+
+AWS MANAGED | CUSTOMER MANAGED | CUSTOM KEY STORES
+--- | --- | ---
+AWS creates and manages | You (customer) create and manage | Created with CloudHSM
+Used by AWS services (*aws/lambda, aws/cloud9, aws/s3*) | Can create policies | you own and manage
+ __ | Specify who can use and manage the keys | __
 
