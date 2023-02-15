@@ -87,7 +87,7 @@ Sustainability | The ability to coninually improve sustainability impacts by red
 
 ---
 
-### Important Points to Remember for the Exam
+### Important Points to Remember
 
 #### BENIFITS
 	- Global reach: Data Centers around the world.
@@ -257,6 +257,7 @@ A DDoS attack is a cyber attack that overloads a website or service with too muc
 	1. Allow, block, monitor/count.
 	2. IP addresses, country of origin, presence of a script, URL strings, etc...
 
+---
 
 ### Data Protection
 
@@ -268,9 +269,8 @@ Data is stored or archived on a device | Data being transferred from one locatio
 Examples : S3 bucket, Hard disk, Databse | Examples: Moving data from an EC2 instance to an S3 bucket, Moving data from an on-premises data center to AWS
 
 #### Encryption Keys
-
-1. Let's say you have a super secret msg that you want to send to somebody but you don't want anyone to be able to read it. 
-2. So you gonna run it through an encryption algorithm and crypt it into something different.
+	- Let's say you have a super secret msg that you want to send to somebody but you don't want anyone to be able to read it.
+	- So you gonna run it through an encryption algorithm and crypt it into something different.
 
 #### AWS Key Management System (KMS) :
 
@@ -295,4 +295,100 @@ AWS MANAGED | CUSTOMER MANAGED | CUSTOM KEY STORES
 AWS creates and manages | You (customer) create and manage | Created with CloudHSM
 Used by AWS services (*aws/lambda, aws/cloud9, aws/s3*) | Can create policies | you own and manage
  __ | Specify who can use and manage the keys | __
+
+---
+
+#### AWS Certificate Manager (ACM)
+
+- You use certificate to make sure that the connection between your request and the response that you receive is encrypted and safe.
+
+- Certificate is just a text file that you put on your server and **Identifies the server as reputable** and also **Ensures communication between us is encrypted**.
+
+- This is called **Transport Layer Security** (TLS) and it replaces the old certificate **Secure Sockets Layer** (SSL).
+
+---
+
+#### AWS Secrets Manager (Gives you the code snippet for your application.)
+
+The recommended way to protect secrets (e.g., user names and passwords) needed by your applications and services.
+
+Example: You created a application that has database on the backend and you need to access this database and it requires username and password.
+
+	-  Hard-code the credentials
+	-  Store credentials on the file system ad then retrieve them when you need it.
+	-  Use AWS Secrets Manager
+
+The first and Second option are not preferable cause the are not that secure. So we go to the usage of AWS Secrets Manager.
+
+---
+
+#### Amazon Macie
+
+- It works specificaly with simple storage service S3 and Automatically inventories S3 buckets.
+- Then Identifies and analyzes **PII** data using machine learning and pattern matching.
+- **PII** (Personally Identifiable Information): this is information that if somebody knew it, they will be able to connect to you personally.
+- Outputs finding which can integrate with **CloudWatch** and **EventBridge** to automate workflows and remediation.
+
+
+---
+### Detection
+
+#### Amazon Inspector
+
+	- This service is used to automate the monitoring and analyzing for security issues.
+	- Automatically detects and scans your servers (**EC2 instances**) and your containers (**Elastic container repository**) for software vulnerabilities and network exposure.
+	 - And then try to makes sense of the findings and assigns a risk score to each one.
+	 - Integrates with **Security Hub** and **EventBridge** to automate workflows and ticketing.
+
+#### Amazon GuardDuty
+
+	- This is another method that you can automate some of the security work in AWS.
+	- It is Continuously analyzes network, account and data access from your own private network (**CloudTrail Mgmt and S3 Events** - **VPC Flow and DNS Logs**).
+	- Then using machine learning, identifies and prioritizes potential threats.
+	- After that using a combination of **CloudWatch** and **Lambda** to automate workflows and remediation.
+
+#### AWS Config
+It's a service that effectively let you take an Inventory, record and audit the configuration of your various AWS resources.
+
+Example :
+
+	- Inventory all your **S3** buckets, and when one of them becomes publicly accessible, receive an alert.
+	- Receive an alert when an unauthorized port opens on a security group(**Firewall**).
+	- During a compliance audit, show when configurations changed.
+
+---
+
+
+#### AWS Security Hub
+It's a service that Pulls everything together into a central consolidated place where you can view and take actions on security issues.
+
+	- Requires AWS Config
+	- Cross-account
+	- Aggregates data from different services (GuardDuty, Inspector, Macie, IAM Access Analyzer, Systems Manager and Firewall Manager).
+
+---
+
+### Incident Response
+
+#### Amazon Detective
+
+- It 's actually work with your **GuardDuty Findings**, so you have to be running it in order to run Detective.
+- It also looks at the **CloudTrail Logs** and **VPC Flow Logs**, these are essentially the logs that shows the traffic IN and OUT of your private network in AWS.
+- Detective is used during incident response, some kind of a security breach incident, the team needs to quickly organize the data coming in make sense of it and then identifies the **Root Cause** quickly.
+- Some of the others services that we talked about are basically scanning for vulnerabilities suspicious activity and Amazon Detective helps to get to the underline cause so you can eradicate the issue.
+
+- Builds a linked set of data using machine learning, statistical analysis and graph theory.
+- Using **Security Hub** and **GuardDuty** to Provides visualizations, context and detailed findings to help get to the root cause. 
+
+#### AWS Artifact
+
+- Your company probably has various regulation from industries and government and the country where you operate (Payment card industry, iso, etc...)
+
+- Self-service portal to access AWS’s internal compliance reports and agreements.
+
+- Free.
+
+---
+
+## Important Points To Remember
 
