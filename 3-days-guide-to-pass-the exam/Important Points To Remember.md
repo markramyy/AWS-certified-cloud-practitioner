@@ -17,7 +17,7 @@
 ![[Responsibilities & IAM.png | 600 ]]
 
 ---
-
+g
 ![[Security1.png | 600 ]]
 
 ---
