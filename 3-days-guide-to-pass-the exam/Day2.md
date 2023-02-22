@@ -241,8 +241,6 @@ Organized by **buckets**
 	- Reliable
 	- Inexpensive
 
-![[S3 Storage Classes.png]]
-
 ### S3 Transfer Accelartion
 Speeds up content transfers by as much as 50-500% for larger objects
 Routes traffic through CLoudFront edge locations
